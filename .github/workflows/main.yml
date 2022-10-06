@@ -24,16 +24,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - name: aws-cdk-github-action
-        # You may pin to the exact commit or the version.
-        # uses: kawazoi/aws-cdk-github-actions@2957c3fd38598155cbf2b572ab0c00c0f9dadbc0
-        uses: kawazoi/aws-cdk-github-actions@1.0.0
+      - name: cdk deploy
+        uses: youyo/aws-cdk-github-actions@v2
         with:
-          # AWS CDK stack name to execute.
-          cdk_stack: "*"
-          # AWS CDK subcommand to execute.
-          cdk_subcommand: "deploy --all --require-approval=never"
-          # Enable debug-log
-          debug_log: true
-  
+          cdk_subcommand: 'deploy'
+          cdk_stack: '*'
+          cdk_args: '--require-approval never'
+          actions_comment: false
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: 'eu-west-1'
+
+
