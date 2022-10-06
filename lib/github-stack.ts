@@ -1,16 +1,14 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import {PythonFunction} from '@aws-cdk/aws-lambda-python-alpha';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
 
 export class GithubStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'GithubQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    new PythonFunction(this, 'Something', {
+        entry: './lib',
+        runtime: Runtime.PYTHON_3_9,
+    })
   }
 }
