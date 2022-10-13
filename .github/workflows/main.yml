@@ -33,13 +33,6 @@ jobs:
         uses: aws-actions/aws-codebuild-run-build@v1
         with:
           project-name: Something
-          env-vars-for-codebuild: |
-            custom,
-            requester,
-            event-name
-        env:
-          custom: my environment variable
-          requester: ${{ github.actor }}
-          event-name: ${{ github.event_name }}
-      
+            
+
 
